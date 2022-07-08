@@ -5,19 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ZipCodeMX;
 
+
 class ZipCodesController extends Controller
 {
+    private $code;
+
+    public function __construct()
+    {
+        $this->code = 404;
+    }
+
     public function get($cp = null)
     {
 
        $result = $this->structure(ZipCodeMX::searchCode($cp));
 
-       if(empty($result))
+       if(!empty($result))
        {
-            return response()->json($result, 404);
+            $this->code = 200;
        }
 
-       return response()->json($result, 200);
+       return response()->json($result, $this->code);
     }
 
     private function structure($result = null)
