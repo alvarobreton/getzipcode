@@ -14,4 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/zip-codes','App\Http\Controllers\ZipCodesController@get');
+//Route::get('/zip-codes/{param}','App\Http\Controllers\ZipCodesController@get');
+
+Route::get('zip-codes/{cp}', 'App\Http\Controllers\ZipCodesController@get')
+    ->where('cp', '(.*)');

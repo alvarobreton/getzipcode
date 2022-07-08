@@ -31,6 +31,8 @@ class CreateZipCodeMXESTable extends Migration
             $table->string('d_zona');
             $table->string('c_cve_ciudad');
             $table->timestamps();
+
+            $table->index(['d_codigo']);
         });
     }
 
