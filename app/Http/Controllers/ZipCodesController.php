@@ -17,15 +17,15 @@ class ZipCodesController extends Controller
 
     public function get($cp = null)
     {
+        $ZipCodeMX = new ZipCodeMX;
+        $result = $this->structure($ZipCodeMX->searchCode($cp));
 
-       $result = $this->structure(ZipCodeMX::searchCode($cp));
+        if(!empty($result))
+        {
+                $this->code = 200;
+        }
 
-       if(!empty($result))
-       {
-            $this->code = 200;
-       }
-
-       return response()->json($result, $this->code);
+        return response()->json($result, $this->code);
     }
 
     private function structure($result = null)
